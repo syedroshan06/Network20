@@ -59,7 +59,7 @@ public class RestApiTestCases {
         int statusCode = resp.getStatusCode();
         Assert.assertEquals(statusCode, 201);
         /**
-         * Validating response schema
+         * Validating response data
          */
         String username = resp.jsonPath().get("username");
         Assert.assertEquals(username, login.getUsername());
@@ -91,7 +91,7 @@ public class RestApiTestCases {
         int statusCode = resp.getStatusCode();
         Assert.assertEquals(statusCode, 400);
         /**
-         * Validating response schema
+         * Validating response data
          */
         String Code = resp.jsonPath().get("Code");
         Assert.assertEquals(Code, "UnauthorizedError");

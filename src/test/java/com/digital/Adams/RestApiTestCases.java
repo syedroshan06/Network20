@@ -22,89 +22,44 @@ public class RestApiTestCases {
     static final String APIKEY = "12345jdfhkjdsf456";
 
     @BeforeClass
-    public void init(){
+    public void init() {
 
         /**
          * As part of initialization, the base URI and base path is defined here. This will be common and
          * will be used for all test cases
          */
 
-        RestAssured.baseURI="https://r8alxaspi1.execute-api.ap-southeast2.amazonaws.com";
-        RestAssured.basePath="/api/ezypay";
-
-
-
-
-    }
-
-
-    /**
-     * This test is to validate successful login
-     */
-
-    @Test
-    public void login_Successful(){
-
-        login login = new login();
-        login.setUsername("test-user");
-        login.setPassword("abc123");
-
-        given().header("Authorization","Bearer "+ APIKEY)
-                .contentType(ContentType.JSON).when()
-                .body(login)
-                .post("/login")
-                .then()
-                .statusCode(201);
-
+        RestAssured.baseURI = "https://r8alxaspi1.execute-api.ap-southeast2.amazonaws.com";
+        RestAssured.basePath = "/api/ezypay";
 
 
     }
 
-    /**
-     * This test is to validate Unsuccessful login
-     */
-
-    @Test
-    public void login_Unsuccessful(){
-
-        login login = new login();
-        login.setUsername("test-user");
-        login.setPassword("xyz123");
-
-        given().header("Authorization","Bearer "+ APIKEY)
-                .contentType(ContentType.JSON).when()
-                .body(login)
-                .post("/login")
-                .then()
-                .statusCode(400);
-
-
-    }
 
     /**
      * This test validates Successful login Status code and response data
      */
 
     @Test
-    public void login_Successful_additional(){
+    public void login_Successful() {
 
         login login = new login();
         login.setUsername("test-user");
         login.setPassword("abc123");
 
         Response resp =
-                given().header("Authorization","Bearer "+ APIKEY)
+                given().header("Authorization", "Bearer " + APIKEY)
                         .contentType(ContentType.JSON).when()
                         .body(login)
                         .post("/login");
 
         /**
-         * Validating the status code
+         * Validating status code to be 201
          */
         int statusCode = resp.getStatusCode();
-        Assert.assertEquals(statusCode,201);
+        Assert.assertEquals(statusCode, 201);
         /**
-         * Validating the response schema
+         * Validating response schema
          */
         String username = resp.jsonPath().get("username");
         Assert.assertEquals(username, login.getUsername());
@@ -118,25 +73,25 @@ public class RestApiTestCases {
      */
 
     @Test
-    public void login_Unsuccessful_additional(){
+    public void login_Unsuccessful() {
 
         login login = new login();
         login.setUsername("test-user");
         login.setPassword("xyz123");
 
         Response resp =
-        given().header("Authorization","Bearer "+ APIKEY)
-                .contentType(ContentType.JSON).when()
-                .body(login)
-                .post("/login");
+                given().header("Authorization", "Bearer " + APIKEY)
+                        .contentType(ContentType.JSON).when()
+                        .body(login)
+                        .post("/login");
 
         /**
-         * Validating the status code
+         * Validating status code to be 400 - Bad request
          */
         int statusCode = resp.getStatusCode();
-        Assert.assertEquals(statusCode,400);
+        Assert.assertEquals(statusCode, 400);
         /**
-         * Validating the response schema
+         * Validating response schema
          */
         String Code = resp.jsonPath().get("Code");
         Assert.assertEquals(Code, "UnauthorizedError");

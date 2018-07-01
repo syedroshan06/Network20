@@ -10,12 +10,24 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
+/**
+ * This class contains the test scripts for login api
+ */
+
 public class RestApiTestCases {
 
+    /**
+     * This project assumes that API endpoint needs access token/key as part of authentication
+     */
     static final String APIKEY = "12345jdfhkjdsf456";
 
     @BeforeClass
     public void init(){
+
+        /**
+         * As part of initialization, the base URI and base path is defined here. This will be common and
+         * will be used for all test cases
+         */
 
         RestAssured.baseURI="https://r8alxaspi1.execute-api.ap-southeast2.amazonaws.com";
         RestAssured.basePath="/api/ezypay";

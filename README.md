@@ -1,5 +1,5 @@
-Test scripts and all object definition is maintained under src/test/java folder.
-The package com.digital.Adams contains test scripts maintained under the class "RestApiTestCases"
+Test scripts and all object definition are maintained under src/test/java folder.
+The package com.digital.Adams contains test scripts under the class "RestApiTestCases"
 The package com.ojectModel contains the keys(objects) for login api
 
 Test case descrition:

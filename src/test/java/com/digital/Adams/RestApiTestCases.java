@@ -86,10 +86,10 @@ public class RestApiTestCases {
                         .post("/login");
 
         /**
-         * Validating status code to be 400 - Bad request
+         * Validating status code to be 401 - Unauthorized
          */
         int statusCode = resp.getStatusCode();
-        Assert.assertEquals(statusCode, 400);
+        Assert.assertEquals(statusCode, 401);
         /**
          * Validating response data
          */

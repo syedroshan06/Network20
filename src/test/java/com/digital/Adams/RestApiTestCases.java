@@ -54,10 +54,10 @@ public class RestApiTestCases {
                         .post("/login");
 
         /**
-         * Validating status code to be 201
+         * Validating status code to be 200
          */
         int statusCode = resp.getStatusCode();
-        Assert.assertEquals(statusCode, 201);
+        Assert.assertEquals(statusCode, 200);
         /**
          * Validating response data
          */
